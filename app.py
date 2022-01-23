@@ -18,11 +18,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import xmltodict
 import yaml
+import os
 
 from discord_webhook import DiscordWebhook
 from flask import Flask, request
 from xml.parsers.expat import ExpatError
+from dotenv import load_dotenv, find_dotenv
 
+load_dotenv(find_dotenv())
+hookUrl=os.eviron.get('HOOK_URL')
 
 try:
     with open("./config.yaml") as f:
@@ -64,7 +68,7 @@ def feed():
         # Send the message to the webhook URL.
         # https://discord.com/developers/docs/resources/webhook
         message = config["message_prefix"] + "\n" + video_url
-        webhook = DiscordWebhook(url=config["webhook_url"], content=message)
+        webhook = DiscordWebhook(url=hookUrl, content=message)
         response = webhook.execute()
 
     except (ExpatError, LookupError):

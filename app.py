@@ -26,7 +26,7 @@ from xml.parsers.expat import ExpatError
 from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
-hookUrl=os.eviron.get('HOOK_URL')
+hookUrl=os.environ.get('HOOK_URL')
 
 try:
     with open("./config.yaml") as f:
